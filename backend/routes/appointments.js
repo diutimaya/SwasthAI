@@ -4,9 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const Appointment = require("../models/Appointment"); // Mongoose model
 
-const doctorsData = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../../data/doctors.json"), "utf-8")
-);
+const doctorsData = fs.readFileSync(path.join(__dirname, '../../Data/doctors.json'))
 
 // ─────────────────────────────────────────────────────────────
 // GET /api/appointments
