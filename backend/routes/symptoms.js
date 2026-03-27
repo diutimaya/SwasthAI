@@ -3,8 +3,13 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
-const data = fs.readFileSync(path.join(__dirname, '../../Data/symptoms.json'))
-const doctorsData = fs.readFileSync(path.join(__dirname, '../../Data/doctors.json'))
+const symptomsData = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '../../Data/symptoms.json'), 'utf-8')
+);
+
+const doctorsData = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '../../Data/doctors.json'), 'utf-8')
+);
 
 function normalize(str) {
   return str.toLowerCase().trim().replace(/\s+/g, "_");
