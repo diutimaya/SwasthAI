@@ -3,9 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
-const symptomsData = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../../data/symptoms.json"), "utf-8")
-);
+const data = fs.readFileSync(path.join(__dirname, '../../Data/symptoms.json'))
 const doctorsData = JSON.parse(
   fs.readFileSync(path.join(__dirname, "../../data/doctors.json"), "utf-8")
 );
