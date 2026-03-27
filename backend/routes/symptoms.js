@@ -4,9 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const data = fs.readFileSync(path.join(__dirname, '../../Data/symptoms.json'))
-const doctorsData = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../../data/doctors.json"), "utf-8")
-);
+const doctorsData = fs.readFileSync(path.join(__dirname, "../../data/doctors.json"))
 
 function normalize(str) {
   return str.toLowerCase().trim().replace(/\s+/g, "_");
