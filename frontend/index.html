@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SwasthAI — Symptom Checker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #0D7377;
+      --brand-light: #14BDCA;
+      --brand-pale: #E6F7F8;
+      --accent: #F0A500;
+      --danger: #E85D4A;
+      --success: #2ECC71;
+      --bg: #F4F9FA;
+      --card: #FFFFFF;
+      --text: #1A2B30;
+      --muted: #6B8B90;
+      --border: #D6E9EB;
+      --shadow: 0 2px 16px rgba(13,115,119,0.08);
+      --radius: 14px;
+    }
+
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    nav {
+      background: var(--card); border-bottom: 1px solid var(--border);
+      padding: 0 24px; display: flex; align-items: center;
+      justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 2rem; font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: 1px; color: var(--brand); display: flex; align-items: center; gap: 8px; }
+    
+    .logo-dot { width: 10px; height: 10px; background: var(--brand-light); border-radius: 50%; }
+    .nav-badge { background: var(--brand-pale); color: var(--brand); font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+
+    .stepper {
+      display: flex; align-items: center; margin-bottom: 36px;
+      background: var(--card); border-radius: var(--radius); padding: 20px 28px; box-shadow: var(--shadow);
+    }
+    .step { display: flex; align-items: center; gap: 10px; flex: 1; }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600; color: var(--muted); flex-shrink: 0; transition: all 0.3s;
+    }
+    .step.active .step-num { background: var(--brand); border-color: var(--brand); color: #fff; }
+    .step.done .step-num { background: var(--success); border-color: var(--success); color: #fff; }
+    .step-label { font-size: 13px; color: var(--muted); font-weight: 500; }
+    .step.active .step-label { color: var(--brand); }
+    .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 8px; }
+    .step-line.done { background: var(--success); }
+
+    .card { background: var(--card); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); margin-bottom: 20px; }
+    .card-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .card-sub { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+
+    .symptom-input-wrap { display: flex; gap: 10px; margin-bottom: 16px; }
+    input[type="text"] {
+      flex: 1; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: inherit; font-size: 14px; color: var(--text); background: #fff; outline: none; transition: border 0.2s;
+    }
+    input[type="text"]:focus { border-color: var(--brand-light); }
+    input[type="date"], select {
+      padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: inherit; font-size: 14px; color: var(--text); background: #fff; outline: none; width: 100%; transition: border 0.2s;
+    }
+    input[type="date"]:focus, select:focus { border-color: var(--brand-light); }
+
+    .btn { padding: 11px 22px; border-radius: 10px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-primary:hover { background: #0a5e62; transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .btn-outline { background: transparent; color: var(--brand); border: 1.5px solid var(--brand); }
+    .btn-outline:hover { background: var(--brand-pale); }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-accent:hover { background: #d4900a; }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .tag {
+      background: var(--brand-pale); color: var(--brand); padding: 6px 12px; border-radius: 20px;
+      font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px;
+      animation: popIn 0.2s ease;
+    }
+    @keyframes popIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .tag-remove { cursor: pointer; font-size: 14px; color: var(--brand); line-height: 1; }
+    .tag-remove:hover { color: var(--danger); }
+
+    .quick-symptoms { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .quick-chip {
+      background: #fff; border: 1.5px solid var(--border); padding: 6px 12px; border-radius: 20px;
+      font-size: 12px; color: var(--muted); cursor: pointer; transition: all 0.2s;
+    }
+    .quick-chip:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-pale); }
+
+    /* CONDITION CARDS */
+    .condition-card {
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 18px 20px; margin-bottom: 14px; transition: border 0.2s;
+    }
+    .condition-card.top { border-color: var(--brand); background: var(--brand-pale); }
+    .condition-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .condition-name { font-size: 16px; font-weight: 600; }
+    .match-badge { background: var(--brand); color: #fff; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 20px; }
+    .severity-badge { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 20px; margin-right: 6px; }
+    .severity-mild { background: #E8F5E9; color: #2E7D32; }
+    .severity-moderate { background: #FFF8E1; color: #F57F17; }
+    .severity-severe { background: #FFEBEE; color: #C62828; }
+    .condition-desc { font-size: 13px; color: var(--muted); margin-top: 6px; }
+    .urgency-text { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .urgency-text span { font-weight: 600; color: var(--text); }
+
+    /* DOCTOR CARDS */
+    .doctor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 600px) { .doctor-grid { grid-template-columns: 1fr; } }
+    .doctor-card { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px; transition: all 0.2s; cursor: pointer; }
+    .doctor-card:hover { border-color: var(--brand); box-shadow: 0 4px 20px rgba(13,115,119,0.1); transform: translateY(-2px); }
+    .doctor-card.selected { border-color: var(--brand); background: var(--brand-pale); }
+    .doc-header { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+    .doc-avatar { width: 44px; height: 44px; background: var(--brand-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .doc-name { font-size: 15px; font-weight: 600; }
+    .doc-spec { font-size: 12px; color: var(--brand); font-weight: 500; }
+    .doc-info { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .doc-info-item { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+    .doc-info-item strong { color: var(--text); }
+    .doc-fee { font-size: 14px; font-weight: 600; color: var(--brand); margin-top: 8px; }
+
+    /* BOOKING */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 13px; font-weight: 500; color: var(--muted); }
+    .slot-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .slot-btn { padding: 8px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px; cursor: pointer; background: #fff; color: var(--text); transition: all 0.2s; font-family: inherit; }
+    .slot-btn:hover { border-color: var(--brand); color: var(--brand); }
+    .slot-btn.selected { background: var(--brand); border-color: var(--brand); color: #fff; }
+
+    /* CONFIRMATION */
+    .confirmation { text-align: center; padding: 24px; }
+    .confirm-icon { width: 72px; height: 72px; background: #E8F5E9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 20px; }
+    .confirm-title { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+    .confirm-sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+    .confirm-details { background: var(--bg); border-radius: 12px; padding: 18px 24px; text-align: left; margin-bottom: 20px; }
+    .confirm-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .confirm-row:last-child { border-bottom: none; }
+    .confirm-row span:first-child { color: var(--muted); }
+    .confirm-row span:last-child { font-weight: 600; }
+    .apt-id { color: var(--brand); font-family: monospace; font-size: 13px; }
+
+    /* UTILITY */
+    .hidden { display: none !important; }
+    .flex { display: flex; }
+    .gap-10 { gap: 10px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-20 { margin-top: 20px; }
+    .divider { height: 1px; background: var(--border); margin: 18px 0; }
+    .loading { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 32px; color: var(--muted); font-size: 14px; }
+    .spinner { width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--brand); border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .alert { padding: 12px 16px; border-radius: 10px; font-size: 14px; margin-bottom: 16px; }
+    .alert-warn { background: #FFF8E1; color: #7B5E00; border-left: 3px solid var(--accent); }
+    .alert-danger { background: #FFEBEE; color: #8B1A1A; border-left: 3px solid var(--danger); }
+
+    .hero { text-align: center; padding: 32px 0 24px; }
+    .hero-title { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--brand); line-height: 1.2; margin-bottom: 10px; }
+    .hero-sub { font-size: 15px; color: var(--muted); max-width: 520px; margin: 0 auto 28px; }
+    .hero-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .hero-pill { background: var(--card); border: 1.5px solid var(--border); padding: 8px 16px; border-radius: 20px; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brand-light); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><div class="logo-dot"></div>SwasthAI</div>
+  <div class="nav-badge">Delhi, India</div>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-title">Not sure what's wrong? <br/>We'll figure it out.</div>
+    <div class="hero-sub">Just tell us how you feel and we'll find the right specialist for you, instantly.</div>
+    <div class="hero-pills">
+      <div class="hero-pill"><div class="pill-dot"></div> Instant matching</div>
+      <div class="hero-pill"><div class="pill-dot"></div> Book in 60 seconds</div>
+    </div>
+  </div>
+
+  <div class="stepper">
+    <div class="step active" id="step1"><div class="step-num">1</div><div class="step-label">Enter symptoms</div></div>
+    <div class="step-line" id="line1"></div>
+    <div class="step" id="step2"><div class="step-num">2</div><div class="step-label">View results</div></div>
+    <div class="step-line" id="line2"></div>
+    <div class="step" id="step3"><div class="step-num">3</div><div class="step-label">Book appointment</div></div>
+    <div class="step-line" id="line3"></div>
+    <div class="step" id="step4"><div class="step-num">4</div><div class="step-label">Confirmation</div></div>
+  </div>
+
+  <!-- STEP 1: SYMPTOM INPUT -->
+  <div id="section-symptoms" class="card">
+    <div class="card-title">What symptoms are you experiencing?</div>
+    <div class="card-sub">Type each symptom and press Enter or click Add. Be as specific as possible.</div>
+    <div class="symptom-input-wrap">
+      <input type="text" id="symptomInput" placeholder="e.g. fever, headache, nausea..." />
+      <button class="btn btn-primary" onclick="addSymptom()">+ Add</button>
+    </div>
+    <div id="tagList" class="tag-list"></div>
+    <div style="margin-top:14px;">
+      <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Common symptoms</div>
+      <div class="quick-symptoms">
+        <div class="quick-chip" onclick="quickAdd('fever')"> Fever</div>
+        <div class="quick-chip" onclick="quickAdd('headache')"> Headache</div>
+        <div class="quick-chip" onclick="quickAdd('cough')"> Cough</div>
+        <div class="quick-chip" onclick="quickAdd('nausea')"> Nausea</div>
+        <div class="quick-chip" onclick="quickAdd('body ache')"> Body ache</div>
+        <div class="quick-chip" onclick="quickAdd('fatigue')"> Fatigue</div>
+        <div class="quick-chip" onclick="quickAdd('dizziness')"> Dizziness</div>
+        <div class="quick-chip" onclick="quickAdd('rash')"> Rash</div>
+        <div class="quick-chip" onclick="quickAdd('chest pain')"> Chest pain</div>
+        <div class="quick-chip" onclick="quickAdd('stomach pain')"> Stomach pain</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:flex-end;">
+      <button class="btn btn-primary" onclick="analyzeSymptoms()" id="analyzeBtn" disabled>Analyze Symptoms →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: RESULTS -->
+  <div id="section-results" class="hidden">
+    <div id="loadingDiv" class="card loading">
+      <div class="spinner"></div> Analyzing your symptoms...
+    </div>
+    <div id="resultsContent" class="hidden">
+      <div class="card">
+        <div class="card-title">Possible conditions</div>
+        <div class="card-sub" id="resultSubtext"></div>
+        <div id="conditionsList"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Recommended doctors</div>
+        <div class="card-sub">Based on your top matched condition. Click a doctor to proceed with booking.</div>
+        <div id="doctorGrid" class="doctor-grid"></div>
+        <div class="mt-20" style="display:flex;justify-content:space-between;align-items:center;">
+          <button class="btn btn-outline" onclick="goBack(1)">← Back</button>
+          <button class="btn btn-primary hidden" id="proceedBtn" onclick="goToBooking()">Continue to Booking →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: BOOKING -->
+  <div id="section-booking" class="hidden card">
+    <div class="card-title">Book your appointment</div>
+    <div class="card-sub" id="bookingDoctorInfo"></div>
+    <div class="form-grid">
+      <div class="form-group"><label>Patient name *</label><input type="text" id="patientName" placeholder="Your full name"/></div>
+      <div class="form-group"><label>Age</label><input type="text" id="patientAge" placeholder="e.g. 22"/></div>
+      <div class="form-group"><label>Phone number</label><input type="text" id="patientPhone" placeholder="+91 XXXXX XXXXX"/></div>
+      <div class="form-group"><label>Preferred date *</label><input type="date" id="appointmentDate"/></div>
+    </div>
+    <div class="form-group mt-16">
+      <label>Choose a time slot *</label>
+      <div id="slotGrid" class="slot-grid"></div>
+    </div>
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <button class="btn btn-outline" onclick="goBack(2)">← Back</button>
+      <button class="btn btn-accent" onclick="bookAppointment()">Confirm Booking →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: CONFIRMATION -->
+  <div id="section-confirmation" class="hidden card">
+    <div class="confirmation">
+      <div class="confirm-icon">✅</div>
+      <div class="confirm-title">Appointment Confirmed!</div>
+      <div class="confirm-sub">Your appointment has been successfully booked. Save the details below.</div>
+      <div class="confirm-details" id="confirmDetails"></div>
+      <div class="flex gap-10" style="justify-content:center;">
+        <button class="btn btn-primary" onclick="resetAll()">Book Another</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const API = '';
+  let symptoms = [];
+  let selectedDoctor = null;
+  let selectedSlot = null;
+  let analysisResult = null;
+
+  // ── Symptom input ─────────────────────────────────────────────────────────
+  document.getElementById('symptomInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') addSymptom();
+  });
+
+  function addSymptom() {
+    const input = document.getElementById('symptomInput');
+    const val = input.value.trim().toLowerCase();
+    if (!val || symptoms.includes(val)) { input.value = ''; return; }
+    symptoms.push(val);
+    input.value = '';
+    renderTags();
+    document.getElementById('analyzeBtn').disabled = false;
+  }
+
+  function quickAdd(sym) {
+    if (symptoms.includes(sym)) return;
+    symptoms.push(sym);
+    renderTags();
+    document.getElementById('analyzeBtn').disabled = false;
+  }
+
+  function removeSymptom(sym) {
+    symptoms = symptoms.filter(s => s !== sym);
+    renderTags();
+    document.getElementById('analyzeBtn').disabled = symptoms.length === 0;
+  }
+
+  function renderTags() {
+    document.getElementById('tagList').innerHTML = symptoms.map(s => `
+      <div class="tag">${s}<span class="tag-remove" onclick="removeSymptom('${s}')">×</span></div>
+    `).join('');
+  }
+
+  // ── Analyze ───────────────────────────────────────────────────────────────
+  async function analyzeSymptoms() {
+    show('section-results');
+    hide('section-symptoms');
+    setStep(2);
+    document.getElementById('loadingDiv').classList.remove('hidden');
+    document.getElementById('resultsContent').classList.add('hidden');
+
+    try {
+      const res = await fetch(`${API}/api/symptoms/analyze`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ symptoms })
+      });
+      const data = await res.json();
+      analysisResult = data;
+      renderResults(data);
+    } catch (err) {
+      document.getElementById('loadingDiv').innerHTML =
+        `<div class="alert alert-danger">⚠ Could not connect to server. Make sure the backend is running on port 3000.</div>`;
+    }
+  }
+
+  // ── BUG 1 FIX: renderResults is now a properly closed standalone function ─
+  // ── BUG 2 FIX: doctor grid rendering added inside renderResults ───────────
+  // ── BUG 3 FIX: reads c.disease (not c.name), c.severity (not c.urgency) ──
+  function renderResults(data) {
+    document.getElementById('loadingDiv').classList.add('hidden');
+    document.getElementById('resultsContent').classList.remove('hidden');
+
+    // Subtext
+    document.getElementById('resultSubtext').textContent =
+      `Based on: ${symptoms.join(', ')}. Showing top ${data.conditions.length} possible match${data.conditions.length !== 1 ? 'es' : ''}.`;
+
+    // Conditions
+    const condList = document.getElementById('conditionsList');
+    if (!data.conditions || data.conditions.length === 0) {
+      condList.innerHTML = `<div class="alert alert-warn">No specific condition matched. We recommend consulting a General Physician.</div>`;
+    } else {
+      condList.innerHTML = data.conditions.map((c, i) => {
+        const sev = (c.severity || 'moderate').toLowerCase();
+        return `
+          <div class="condition-card ${i === 0 ? 'top' : ''}">
+            <div class="condition-head">
+              <div class="condition-name">${c.disease}</div>
+              <div>
+                <span class="severity-badge severity-${sev}">${c.severity || 'Moderate'}</span>
+                <span class="match-badge">${c.matchPercent}% match</span>
+              </div>
+            </div>
+            <div style="font-size:13px;color:var(--brand);font-weight:500;">→ See a ${c.specialist}</div>
+            <div class="condition-desc">Matched symptoms: ${Array.isArray(c.matchedSymptoms) && c.matchedSymptoms.length ? c.matchedSymptoms.join(', ') : 'N/A'}</div>
+            <div class="urgency-text">Severity: <span>${c.severity || 'Moderate'}</span></div>
+          </div>`;
+      }).join('');
+    }
+
+    // Doctors — was entirely missing in original code
+    const doctorGrid = document.getElementById('doctorGrid');
+    const doctors = data.recommendedDoctors || [];
+    if (doctors.length === 0) {
+      doctorGrid.innerHTML = `<div class="alert alert-warn" style="grid-column:1/-1">No doctors found for this specialization.</div>`;
+    } else {
+      doctorGrid.innerHTML = doctors.map(d => `
+        <div class="doctor-card" id="doc-${d.id}" onclick="selectDoctor(${d.id})">
+          <div class="doc-header">
+            <div class="doc-avatar">👨‍⚕️</div>
+            <div>
+              <div class="doc-name">${d.name}</div>
+              <div class="doc-spec">${d.specialization}</div>
+            </div>
+          </div>
+          <div class="doc-info">
+            <div class="doc-info-item">🎓 <strong>${d.experience || 'N/A'} yrs exp</strong></div>
+            <div class="doc-info-item">🏥 <strong>${d.hospital || d.city || 'N/A'}</strong></div>
+            ${d.degree ? `<div class="doc-info-item">📋 <strong>${d.degree}</strong></div>` : ''}
+          </div>
+          <div class="doc-fee">₹${d.fee || 'N/A'} consultation</div>
+        </div>
+      `).join('');
+    }
+  }
+  // ── end renderResults ─────────────────────────────────────────────────────
+
+  // ── BUG 4 FIX: selectDoctor is now a proper top-level function ────────────
+  function selectDoctor(id) {
+    document.querySelectorAll('.doctor-card').forEach(c => c.classList.remove('selected'));
+    const card = document.getElementById(`doc-${id}`);
+    if (card) card.classList.add('selected');
+    selectedDoctor = (analysisResult.recommendedDoctors || []).find(d => d.id === id);
+    document.getElementById('proceedBtn').classList.remove('hidden');
+  }
+
+  // ── Booking ───────────────────────────────────────────────────────────────
+  function goToBooking() {
+    if (!selectedDoctor) return;
+    hide('section-results');
+    show('section-booking');
+    setStep(3);
+    document.getElementById('bookingDoctorInfo').innerHTML =
+      `Booking with <strong>${selectedDoctor.name}</strong> — ${selectedDoctor.specialization}`;
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('appointmentDate').min = today;
+    document.getElementById('appointmentDate').value = today;
+    const slots = selectedDoctor.slots && selectedDoctor.slots.length
+      ? selectedDoctor.slots
+      : ['9:00 AM','10:00 AM','11:00 AM','12:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM'];
+    renderSlots(slots);
+  }
+
+  function renderSlots(slots) {
+    document.getElementById('slotGrid').innerHTML = slots.map(s =>
+      `<button class="slot-btn" onclick="selectSlot(this,'${s}')">${s}</button>`
+    ).join('');
+  }
+
+  function selectSlot(el, slot) {
+    document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedSlot = slot;
+  }
+
+  async function bookAppointment() {
+    const patientName  = document.getElementById('patientName').value.trim();
+    const patientAge   = document.getElementById('patientAge').value.trim();
+    const patientPhone = document.getElementById('patientPhone').value.trim();
+    const date         = document.getElementById('appointmentDate').value;
+    if (!patientName) return alert('Please enter your name.');
+    if (!date)        return alert('Please select a date.');
+    if (!selectedSlot) return alert('Please select a time slot.');
+
+    try {
+      const res = await fetch(`${API}/api/appointments/book`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          patientName, patientAge, patientPhone,
+          doctorId: selectedDoctor.id,
+          date, slot: selectedSlot,
+          // BUG FIX: was c.condition — correct key from API is c.disease
+          condition: analysisResult?.conditions?.[0]?.disease || 'General Consultation',
+          symptoms
+        })
+      });
+      const data = await res.json();
+      if (!data.success) { alert(data.message); return; }
+      showConfirmation(data);
+    } catch (err) {
+      alert('Could not book appointment. Make sure the backend server is running.');
+    }
+  }
+
+  function showConfirmation(data) {
+    hide('section-booking');
+    show('section-confirmation');
+    setStep(4);
+    const apt = data.appointment;
+    document.getElementById('confirmDetails').innerHTML = `
+      <div class="confirm-row"><span>Appointment ID</span><span class="apt-id">${apt.id}</span></div>
+      <div class="confirm-row"><span>Patient</span><span>${apt.patient || apt.patientName}</span></div>
+      <div class="confirm-row"><span>Doctor</span><span>${apt.doctor || apt.doctorName}</span></div>
+      <div class="confirm-row"><span>Hospital</span><span>${apt.hospital}</span></div>
+      <div class="confirm-row"><span>Date</span><span>${apt.date}</span></div>
+      <div class="confirm-row"><span>Time</span><span>${apt.slot}</span></div>
+      <div class="confirm-row"><span>Consultation fee</span><span style="color:var(--brand)">${data.fee}</span></div>
+      <div class="confirm-row"><span>Status</span><span style="color:var(--success)">✓ Confirmed</span></div>
+    `;
+  }
+
+  // ── Navigation ────────────────────────────────────────────────────────────
+  function goBack(toStep) {
+    if (toStep === 1) { hide('section-results'); show('section-symptoms'); setStep(1); }
+    else if (toStep === 2) { hide('section-booking'); show('section-results'); setStep(2); }
+  }
+
+  function resetAll() {
+    symptoms = []; selectedDoctor = null; selectedSlot = null; analysisResult = null;
+    document.getElementById('tagList').innerHTML = '';
+    document.getElementById('symptomInput').value = '';
+    document.getElementById('analyzeBtn').disabled = true;
+    hide('section-confirmation');
+    show('section-symptoms');
+    setStep(1);
+  }
+
+  function show(id) { document.getElementById(id).classList.remove('hidden'); }
+  function hide(id) { document.getElementById(id).classList.add('hidden'); }
+
+  function setStep(n) {
+    for (let i = 1; i <= 4; i++) {
+      const s = document.getElementById(`step${i}`);
+      s.classList.remove('active','done');
+      if (i < n) s.classList.add('done');
+      if (i === n) s.classList.add('active');
+    }
+    for (let i = 1; i <= 3; i++) {
+      const l = document.getElementById(`line${i}`);
+      if (l) l.classList.toggle('done', i < n);
+    }
+  }
+</script>
+</body>
+</html>

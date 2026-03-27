@@ -1,0 +1,860 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Neelima Deshmukh",
+    "specialization": "General Physician",
+    "degree": "MBBS",
+    "experience": 36,
+    "fee": 800,
+    "city": "Indore",
+    "location": "Indore Manorama Ganj",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Dr. Nishith Bhargava",
+    "specialization": "General Physician",
+    "degree": "MBBS",
+    "experience": 17,
+    "fee": 700,
+    "city": "Indore",
+    "location": "Vijay Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Dr. Nikunj Sharma",
+    "specialization": "General Physician",
+    "degree": "MBBS",
+    "experience": 13,
+    "fee": 500,
+    "city": "Indore",
+    "location": "Nipania",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Dr. J.K. Jain",
+    "specialization": "Dermatologist",
+    "degree": "MBBS, Diploma in Dermatology",
+    "experience": 53,
+    "fee": 1000,
+    "city": "Delhi",
+    "location": "Patparganj",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Dr. Hemant Sharma",
+    "specialization": "Dermatologist",
+    "degree": "MBBS, MD - Dermatology , Venereology & Leprosy",
+    "experience": 48,
+    "fee": 1500,
+    "city": "Delhi",
+    "location": "Pusa Road",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Dr. Devinder M. Mahajan",
+    "specialization": "Dermatologist",
+    "degree": "MBBS, MD - Dermatology and Venerology",
+    "experience": 46,
+    "fee": 2000,
+    "city": "Delhi",
+    "location": "Sarita Vihar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Dr. Sohan Lal Broor",
+    "specialization": "Gastroenterologist",
+    "degree": "MBBS, MD - Medicine, DM - Gastroenterology",
+    "experience": 56,
+    "fee": 2000,
+    "city": "Delhi",
+    "location": "Sarita Vihar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Dr. J.C Vij",
+    "specialization": "Gastroenterologist",
+    "degree": "MBBS, MD - Medicine, DM - Gastroenterology",
+    "experience": 53,
+    "fee": 1700,
+    "city": "Delhi",
+    "location": "Pusa Road",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Dr. Ashwini Chopra",
+    "specialization": "Gastroenterologist",
+    "degree": "MBBS, FRCP - Gastroenterology",
+    "experience": 49,
+    "fee": 2500,
+    "city": "Delhi",
+    "location": "Safdarjung Enclave",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Dr. Abhay Bhagwat",
+    "specialization": "Neurologist",
+    "degree": "MBBS, DNB - General Medicine, DM - Neurology",
+    "experience": 21,
+    "fee": 1200,
+    "city": "Indore",
+    "location": "Vijay Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Dr. Nipun Pauranik",
+    "specialization": "Neurologist",
+    "degree": "MBBS, MD - General Medicine, DM - Neurology",
+    "experience": 10,
+    "fee": 1200,
+    "city": "Indore",
+    "location": "Vijay Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Dr. P. N. Renjen",
+    "specialization": "Neurologist",
+    "degree": "FRCP, DM - Neurology, MBBS",
+    "experience": 48,
+    "fee": 2000,
+    "city": "Delhi",
+    "location": "Sarita Vihar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Dr. Sarita Rao",
+    "specialization": "Cardiologist",
+    "degree": "MBBS, MD - General Medicine, DM - Cardiology",
+    "experience": 26,
+    "fee": 700,
+    "city": "Indore",
+    "location": "Vijay Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Dr. Mohammed Ali",
+    "specialization": "Cardiologist",
+    "degree": "MBBS, MCh - Cardio Thoracic Surgery",
+    "experience": 21,
+    "fee": 700,
+    "city": "Indore",
+    "location": "Vijay Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Dr. Umesh Gupta",
+    "specialization": "Cardiologist",
+    "degree": "MBBS, MD - General Medicine, DM - Cardiology",
+    "experience": 52,
+    "fee": 3000,
+    "city": "Delhi",
+    "location": "Greater Kailash Part 1",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Dr. Sunil Rajan",
+    "specialization": "Orthopedic surgeon",
+    "degree": "MBBS, MS - Orthopaedics",
+    "experience": 26,
+    "fee": 700,
+    "city": "Indore",
+    "location": "Vijay Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Dr. Avinash Benjamin",
+    "specialization": "Orthopedic surgeon",
+    "degree": "MBBS, MS - Orthopaedics",
+    "experience": 21,
+    "fee": 800,
+    "city": "Indore",
+    "location": "Vijay Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Dr. N. C. Gupta",
+    "specialization": "Orthopedic surgeon",
+    "degree": "MBBS, MS - Orthopaedics",
+    "experience": 57,
+    "fee": 500,
+    "city": "Delhi",
+    "location": "Kamla Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Dr. Ajay Lall",
+    "specialization": "Pulmonologist",
+    "degree": "MBBS, MD - Pulmonary Medicine",
+    "experience": 37,
+    "fee": 2000,
+    "city": "Delhi",
+    "location": "Saket",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Dr. Sandeep Nayar",
+    "specialization": "Pulmonologist",
+    "degree": "MBBS, MD - TB & Chest",
+    "experience": 32,
+    "fee": 1500,
+    "city": "Delhi",
+    "location": "Pusa Road",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Dr. Deepak Rosha",
+    "specialization": "Pulmonologist",
+    "degree": "MBBS, MD - Medicine, MD - Tuberculosis & Respiratory Diseases / Pulmonary Medicine",
+    "experience": 31,
+    "fee": 1500,
+    "city": "Delhi",
+    "location": "Sarita Vihar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Dr. C M Batra",
+    "specialization": "Endocrinologist",
+    "degree": "MBBS, MD - General Medicine, DNB - Endocrinology, Diabetes, Metabolism, Diploma in Child Health (DCH)",
+    "experience": 43,
+    "fee": 2500,
+    "city": "Delhi",
+    "location": "Sarita Vihar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Dr. Ram Pratap Singh",
+    "specialization": "Endocrinologist",
+    "degree": "MBBS, MD - Medicine, DM - Endocrinology",
+    "experience": 38,
+    "fee": 1000,
+    "city": "Delhi",
+    "location": "Sarita Vihar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Dr. Subhash Wangnoo",
+    "specialization": "Endocrinologist",
+    "degree": "MBBS, MD - Medicine, DM - Endocrinology",
+    "experience": 37,
+    "fee": 3000,
+    "city": "Delhi",
+    "location": "Sarita Vihar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Dr. B L Bhan",
+    "specialization": "Urologist",
+    "degree": "MBBS, MS - General Surgery, MCh - Urology",
+    "experience": 56,
+    "fee": 700,
+    "city": "Delhi",
+    "location": "Kilokri",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Dr. H.S.Bhatyal",
+    "specialization": "Urologist",
+    "degree": "MBBS, MS - General Surgery, MCh - Urology",
+    "experience": 51,
+    "fee": 1500,
+    "city": "Delhi",
+    "location": "Pusa Road",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Dr. S K Pal",
+    "specialization": "Urologist",
+    "degree": "MBBS, MS - General Surgery, MCh - Urology/Genito-Urinary Surgery",
+    "experience": 43,
+    "fee": 1500,
+    "city": "Delhi",
+    "location": "Greater Kailash Part 1",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Dr. Devendra Bhargava",
+    "specialization": "General Surgeon",
+    "degree": "MBBS, MS - General Surgery",
+    "experience": 41,
+    "fee": 600,
+    "city": "Indore",
+    "location": "Vijay Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Dr. Manish Khasgiwale",
+    "specialization": "General Surgeon",
+    "degree": "MBBS, MS - General Surgery",
+    "experience": 32,
+    "fee": 800,
+    "city": "Indore",
+    "location": "Vijay Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Dr. A. Choudhary",
+    "specialization": "General Surgeon",
+    "degree": "MBBS, MS - General Surgery",
+    "experience": 22,
+    "fee": 800,
+    "city": "Indore",
+    "location": "Vijay Nagar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Dr. Monica Chib",
+    "specialization": "Psychiatrist",
+    "degree": "MBBS, M.D. (Psychiatry)",
+    "experience": 46,
+    "fee": 2500,
+    "city": "Delhi",
+    "location": "Sarita Vihar",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Dr. Rajesh Mehta",
+    "specialization": "Psychiatrist",
+    "degree": "MBBS, M.D. (Psychiatry)",
+    "experience": 45,
+    "fee": 1200,
+    "city": "Delhi",
+    "location": "Rajouri Garden",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Dr. Somnath Sengupta",
+    "specialization": "Psychiatrist",
+    "degree": "MBBS, M.D. (Psychiatry)",
+    "experience": 39,
+    "fee": 2000,
+    "city": "Delhi",
+    "location": "Greater Kailash Part 1",
+    "slots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  }
+]
