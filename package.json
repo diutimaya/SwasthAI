@@ -1,5 +1,5 @@
 {
-  "name": "SwasthAI -backend",
+  "name": "swasthai-backend",
   "version": "1.0.0",
   "description": "AI-Powered Symptom Checker & Doctor Recommender ",
   "main": "server.js",
